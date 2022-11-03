@@ -1,15 +1,9 @@
 
+let rows = document.getElementsByClassName("w-100 h-100 d-block")
 
-// let paragraphs = document.getElementsByTagName('p')
-// for (elt of paragraphs){
-//     elt.style['background-color'] = '#FF00FF'
-// }
-
-
-Array.from(document.getElementsByClassName("w-100 h-100 d-block")).forEach(function(element) {
-    // Use `element` here
-    console.log(element.parentElement)
+Array.from(rows).forEach(function(element) {
     let link = element.getAttribute("href");
+
     fetch(link)
         .then(function (response) {
             switch (response.status) {
@@ -31,8 +25,6 @@ Array.from(document.getElementsByClassName("w-100 h-100 d-block")).forEach(funct
             // "Not Found"
             console.log(response.statusText);
         });
-    row = element.parentElement.parentElement.parentElement
-    "#FF00FF"
 });
 
 
