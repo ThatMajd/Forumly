@@ -1,5 +1,16 @@
 
+let m = document.createElement('meta')
 let rows = document.getElementsByClassName("w-100 h-100 d-block")
+let j = 0;
+let idP = 'collapse'+j
+
+
+m.name = 'viewport'
+m.content = "width=device-width, initial-scale=1"
+document.head.appendChild(m);
+
+document.body.setAttribute("data-spy", "scroll")
+
 
 Array.from(rows).forEach(function(element) {
     let link = element.getAttribute("href");
@@ -18,8 +29,18 @@ Array.from(rows).forEach(function(element) {
         .then(function (template) {
             let html = new DOMParser().parseFromString(template, "text/html");
             let tmp = html.getElementsByTagName("article").item(0)
-            element.insertAdjacentHTML("afterend", tmp.innerHTML);
 
+            idP = 'collapse'+j
+
+            element.setAttribute('data-toggle', "collapse")
+            element.setAttribute('data-target', '#'+idP)
+            element.insertAdjacentHTML("afterend",
+                "<div id=" + idP + " class=" + "\"collapse in\"" + ">\n" +
+                        tmp.innerHTML +
+                    "\n" +
+                    "</div>"
+            );
+            j++;
         })
         .catch(function (response) {
             // "Not Found"
